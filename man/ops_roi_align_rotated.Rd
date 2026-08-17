@@ -27,12 +27,12 @@ nn_roi_align_rotated(
 \item{input}{(\code{Tensor[N, C, H, W]}): input feature map.}
 
 \item{rois}{(\code{Tensor[K, 6]}): rotated boxes with columns
-\code{(batch_index, cx, cy, w, h, angle)}, where \code{batch_index} is a \strong{0-based}
-index into the first dimension of \code{input}, \code{(cx, cy)} is the box center,
-\code{(w, h)} the box size and \code{angle} the rotation angle in radians
+\verb{(batch_index, cx, cy, w, h, angle)}, where \code{batch_index} is a \strong{0-based}
+index into the first dimension of \code{input}, \verb{(cx, cy)} is the box center,
+\verb{(w, h)} the box size and \code{angle} the rotation angle in radians
 (counterclockwise unless \code{clockwise = TRUE}).}
 
-\item{output_size}{(int or \code{Tuple[int, int]}): the output size \code{(height, width)}
+\item{output_size}{(int or \code{Tuple[int, int]}): the output size \verb{(height, width)}
 after pooling.}
 
 \item{spatial_scale}{(float): scaling factor mapping box coordinates to input
