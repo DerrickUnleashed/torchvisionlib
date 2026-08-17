@@ -6,6 +6,10 @@
 - Added `ops_ms_deform_attn()`, a CUDA implementation of multi-scale deformable
   attention (used by Deformable-DETR and LW-DETR). Vendored from Deformable-DETR
   (Apache-2.0). (#25)
+
+- Added `ops_box_iou_rotated()`, a CPU implementation of intersection-over-union
+  between rotated boxes, supporting the `cxcywhr`, `xywhr` and `xyxyxyxy`
+  formats. Adapted from Detectron2 (Apache-2.0). (#31)
   
 # torchvisionlib 0.8.0
 

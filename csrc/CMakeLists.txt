@@ -136,7 +136,9 @@ if (WIN32)
   set_target_properties(TorchVision PROPERTIES IMPORTED_IMPLIB ${TorchVision_DESTDIR}/lib/torchvision.lib)
 endif()
 
-set(TORCHVISION_SRC src/torchvisionlib.cpp src/ops.cpp src/exports.cpp src/torchvisionlib_types.cpp)
+set(TORCHVISION_SRC src/torchvisionlib.cpp src/ops.cpp src/exports.cpp src/torchvisionlib_types.cpp
+    ops/box_iou_rotated/box_iou_rotated.cpp
+    ops/box_iou_rotated/cpu/box_iou_rotated_kernel.cpp)
 
 # Multi-scale deformable attention op. Host/registration code always builds;
 # the CUDA kernel is added only when CUDA is enabled.
