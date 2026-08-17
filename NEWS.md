@@ -1,7 +1,7 @@
 # torchvisionlib (development version)
 
 - Added `ops_roi_align_rotated()`, a CPU implementation of RoI align pooling
-  for rotated proposals (matching the mmcv `roi_align_rotated` operator). (#32)
+  for rotated proposals (matching the mmcv `roi_align_rotated` operator). (@DerrickUnleashed, #36)
 
 - Added `ops_ms_deform_attn()`, a CUDA implementation of multi-scale deformable
   attention (used by Deformable-DETR and LW-DETR). Vendored from Deformable-DETR
