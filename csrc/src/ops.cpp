@@ -56,6 +56,7 @@ torch::Tensor vision_ops_roi_align_rotated(
   );
 }
 
+// [[torch::export]]
 torch::Tensor vision_ops_box_iou_rotated(torch::Tensor boxes1, torch::Tensor boxes2) {
   return vision::ops::box_iou_rotated(boxes1, boxes2);
 }
