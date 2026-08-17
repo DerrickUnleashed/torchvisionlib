@@ -49,6 +49,7 @@ feature tensor, so no 1-based index adjustment is applied.
 }
 \seealso{
 Other ops:
+\code{\link[=ops_box_iou_rotated]{ops_box_iou_rotated()}},
 \code{\link[=ops_nms]{ops_nms()}}
 }
 \concept{ops}
