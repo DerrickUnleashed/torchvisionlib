@@ -4,6 +4,7 @@ Version: 0.8.0.9000
 Authors@R: c(
     person("Daniel", "Falbel", , "daniel@rstudio.com", role = "aut"),
     person("Tomasz", "Kalinowski", , "tomasz@posit.co", role = c("ctb", "cre")),
+    person("Derrick", "Richard", email = "derrickrds@gmail.com", role = c("ctb")),
     person(, "RStudio", role = "cph")
   )
 Description: Implements additional operators for computer vision models,
