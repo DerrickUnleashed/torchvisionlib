@@ -8,6 +8,7 @@
 #include <torchvisionlib/torchvisionlib.h>
 #include <torchvisionlib/torchvisionlib_types.h>
 #include "ops/ms_deform_attn/ms_deform_attn.h"
+#include "ops/box_iou_rotated/box_iou_rotated.h"
 
 // [[torch::export]]
 torch::Tensor vision_ops_nms(torch::Tensor dets, torch::Tensor scores, double iou_threshold) {
@@ -30,6 +31,11 @@ torch::Tensor vision_ops_ms_deform_attn(
     attn_weight,
     im2col_step
   );
+}
+
+// [[torch::export]]
+torch::Tensor vision_ops_box_iou_rotated(torch::Tensor boxes1, torch::Tensor boxes2) {
+  return vision::ops::box_iou_rotated(boxes1, boxes2);
 }
 
 // [[torch::export]]

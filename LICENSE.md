@@ -27,3 +27,9 @@ The multi-scale deformable attention kernels under
 (https://github.com/fundamentalvision/Deformable-DETR), Copyright (c) 2020
 SenseTime, licensed under the Apache License, Version 2.0. The original license
 headers are retained in those files.
+
+The rotated box IoU kernel under `csrc/ops/box_iou_rotated/` is adapted from
+Detectron2 (https://github.com/facebookresearch/detectron2), Copyright (c)
+Facebook, Inc. and its affiliates, licensed under the Apache License, Version
+2.0, and from Meta's torchvision (BSD-style license). The original license
+headers are retained in those files.

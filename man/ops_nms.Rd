@@ -38,6 +38,10 @@ if (torchvisionlib_is_installed()) {
 }
 \seealso{
 Other ops:
+<<<<<<< HEAD
+=======
+\code{\link[=ops_box_iou_rotated]{ops_box_iou_rotated()}},
+>>>>>>> 19e09f7e8212eff392b8da2120ff2ee10666d32b
 \code{\link[=ops_ms_deform_attn]{ops_ms_deform_attn()}}
 }
 \concept{ops}
