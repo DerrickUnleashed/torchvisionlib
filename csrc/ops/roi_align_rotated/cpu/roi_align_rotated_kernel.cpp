@@ -448,6 +448,8 @@ void check_rois(
   }
 }
 
+} // namespace (anonymous, helpers only)
+
 at::Tensor roi_align_rotated_forward_kernel(
     const at::Tensor& input,
     const at::Tensor& rois,
@@ -559,8 +561,6 @@ at::Tensor roi_align_rotated_backward_kernel(
 
   return grad_input;
 }
-
-} // namespace
 
 TORCH_LIBRARY_IMPL(torchvision, CPU, m) {
   m.impl(

@@ -40,5 +40,41 @@ at::Tensor _roi_align_rotated_backward(
 
 } // namespace detail
 
+// Direct kernel declarations (bypass dispatcher for compatibility)
+at::Tensor roi_align_rotated_forward_kernel(
+    const at::Tensor& input,
+    const at::Tensor& rois,
+    int64_t pooled_height,
+    int64_t pooled_width,
+    double spatial_scale,
+    int64_t sampling_ratio,
+    bool aligned,
+    bool clockwise);
+
+at::Tensor roi_align_rotated_backward_kernel(
+    const at::Tensor& grad_output,
+    const at::Tensor& rois,
+    int64_t pooled_height,
+    int64_t pooled_width,
+    double spatial_scale,
+    int64_t sampling_ratio,
+    bool aligned,
+    bool clockwise,
+    int64_t batch_size,
+    int64_t channels,
+    int64_t height,
+    int64_t width);
+
+// Autograd wrapper
+at::Tensor roi_align_rotated_autograd(
+    const at::Tensor& input,
+    const at::Tensor& rois,
+    int64_t pooled_height,
+    int64_t pooled_width,
+    double spatial_scale,
+    int64_t sampling_ratio,
+    bool aligned,
+    bool clockwise);
+
 } // namespace ops
 } // namespace vision

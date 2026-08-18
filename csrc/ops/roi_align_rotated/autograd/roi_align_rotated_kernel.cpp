@@ -22,7 +22,7 @@ class ROIAlignRotatedFunction
       bool aligned,
       bool clockwise) {
     at::AutoDispatchBelowADInplaceOrView g;
-    auto output = roi_align_rotated(
+    auto output = roi_align_rotated_forward_kernel(
         input,
         rois,
         pooled_height,
@@ -53,7 +53,7 @@ class ROIAlignRotatedFunction
     auto saved = ctx->get_saved_variables();
     auto rois = saved[0];
 
-    auto grad_input = detail::_roi_align_rotated_backward(
+    auto grad_input = roi_align_rotated_backward_kernel(
         grad_output[0],
         rois,
         ctx->saved_data["pooled_height"].toInt(),
@@ -80,6 +80,8 @@ class ROIAlignRotatedFunction
   }
 };
 
+} // namespace
+
 at::Tensor roi_align_rotated_autograd(
     const at::Tensor& input,
     const at::Tensor& rois,
@@ -99,8 +101,6 @@ at::Tensor roi_align_rotated_autograd(
       aligned,
       clockwise)[0];
 }
-
-} // namespace
 
 TORCH_LIBRARY_IMPL(torchvision, Autograd, m) {
   m.impl(

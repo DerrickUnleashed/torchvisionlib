@@ -1,7 +1,6 @@
 #include "roi_align_rotated.h"
 
-#include <ATen/core/dispatch/Dispatcher.h>
-#include <torch/library.h>
+#include <ATen/ATen.h>
 #include <torch/types.h>
 
 namespace vision {
@@ -16,10 +15,12 @@ at::Tensor roi_align_rotated(
     int64_t sampling_ratio,
     bool aligned,
     bool clockwise) {
-  static auto op = c10::Dispatcher::singleton()
-                       .findSchemaOrThrow("torchvision::roi_align_rotated", "")
-                       .typed<decltype(roi_align_rotated)>();
-  return op.call(
+  if (at::GradMode::is_enabled()) {
+    return roi_align_rotated_autograd(
+        input, rois, pooled_height, pooled_width,
+        spatial_scale, sampling_ratio, aligned, clockwise);
+  }
+  return roi_align_rotated_forward_kernel(
       input,
       rois,
       pooled_height,
@@ -45,11 +46,7 @@ at::Tensor _roi_align_rotated_backward(
     int64_t channels,
     int64_t height,
     int64_t width) {
-  static auto op =
-      c10::Dispatcher::singleton()
-          .findSchemaOrThrow("torchvision::_roi_align_rotated_backward", "")
-          .typed<decltype(_roi_align_rotated_backward)>();
-  return op.call(
+  return roi_align_rotated_backward_kernel(
       grad_output,
       rois,
       pooled_height,
