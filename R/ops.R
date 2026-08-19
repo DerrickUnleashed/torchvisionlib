@@ -272,7 +272,7 @@ nn_ps_roi_align <- torch::nn_module(
 
 #' RoI align pooling for rotated proposals
 #'
-#' Performs RoI align pooling for rotated proposals, as implemented by the MMCV
+#' Performs RoI (Region of Interest) align pooling for rotated proposals, as implemented by the MMCV
 #' `roi_align_rotated` operator
 #' (see <https://mmcv.readthedocs.io/en/latest/deployment/mmcv_ops_definition.html#mmcvroialignrotated>).
 #' Only a CPU implementation is provided.
