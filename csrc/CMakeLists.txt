@@ -157,6 +157,16 @@ list(APPEND TORCHVISION_SRC
     ops/roi_align_rotated/cpu/roi_align_rotated_kernel.cpp
     ops/roi_align_rotated/autograd/roi_align_rotated_kernel.cpp
 )
+# Multi-scale deformable attention op. Host/registration code always builds;
+# the CUDA kernel is added only when CUDA is enabled.
+list(APPEND TORCHVISION_SRC
+    ops/ms_deform_attn/ms_deform_attn.cpp
+    ops/ms_deform_attn/cpu/ms_deform_attn_kernel.cpp
+    ops/ms_deform_attn/autograd/ms_deform_attn_kernel.cpp
+)
+if (DEFINED ENV{CUDA} AND NOT '$ENV{CUDA}' STREQUAL '')
+  list(APPEND TORCHVISION_SRC ops/ms_deform_attn/cuda/ms_deform_attn_kernel.cu)
+endif()
 
 add_library(torchvisionlib SHARED ${TORCHVISION_SRC})
 add_library(torchvisionlib::library ALIAS torchvisionlib)

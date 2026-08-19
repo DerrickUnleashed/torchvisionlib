@@ -96,7 +96,7 @@ TORCHVISIONLIB_API void _delete_tensor_pair (void* x) {
   try {
      (delete_tensor_pair(x));
   } TORCHVISIONLIB_HANDLE_EXCEPTION
-  
+
 }
 torch::Tensor tensor_pair_get_first (tensor_pair x);
 TORCHVISIONLIB_API void* _tensor_pair_get_first (void* x) {

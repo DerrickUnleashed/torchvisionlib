@@ -52,5 +52,6 @@ Other ops:
 \code{\link[=ops_box_iou_rotated]{ops_box_iou_rotated()}},
 \code{\link[=ops_nms]{ops_nms()}},
 \code{\link[=ops_roi_align_rotated]{ops_roi_align_rotated()}}
+\code{\link[=ops_nms]{ops_nms()}}
 }
 \concept{ops}

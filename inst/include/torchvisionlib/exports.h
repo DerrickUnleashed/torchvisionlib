@@ -101,7 +101,7 @@ inline void* vision_read_jpeg_float (void* fpath) {
 inline void delete_tensor_pair (void* x) {
    _delete_tensor_pair(x);
   host_exception_handler();
-  
+
 }
 inline void* tensor_pair_get_first (void* x) {
   auto ret =  _tensor_pair_get_first(x);
