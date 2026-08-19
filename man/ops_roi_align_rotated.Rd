@@ -27,12 +27,12 @@ nn_roi_align_rotated(
 \item{input}{(\code{Tensor[N, C, H, W]}): input feature map.}
 
 \item{rois}{(\code{Tensor[K, 6]}): rotated boxes with columns
-\verb{(batch_index, cx, cy, w, h, angle)}, where \code{batch_index} is a \strong{0-based}
+\verb{(batch_index, cx, cy, w, h, angle)}, where \code{batch_index} is an
 index into the first dimension of \code{input}, \verb{(cx, cy)} is the box center,
 \verb{(w, h)} the box size and \code{angle} the rotation angle in radians
 (counterclockwise unless \code{clockwise = TRUE}).}
 
-\item{output_size}{(int or \code{Tuple[int, int]}): the output size \verb{(height, width)}
+\item{output_size}{(integer or integer vector): the output size \verb{(height, width)}
 after pooling.}
 
 \item{spatial_scale}{(float): scaling factor mapping box coordinates to input
@@ -53,13 +53,12 @@ clockwise fashion in image space, otherwise it is counterclockwise.
 Default: \code{FALSE}}
 }
 \value{
-\code{Tensor[K, C, output_size[1], output_size[2]]}: the pooled features, where
+\code{Tensor[K, C, output_height, output_width]}: the pooled features, where
 the \code{r}-th element corresponds to the \code{r}-th RoI in \code{rois}.
 }
 \description{
-Performs RoI align pooling for rotated proposals, as implemented by the MMCV
-\code{roi_align_rotated} operator
-(see \url{https://mmcv.readthedocs.io/en/latest/deployment/mmcv_ops_definition.html#mmcvroialignrotated}).
+Performs RoI (Region of Interest) align pooling for rotated proposals, as implemented by the MMCV
+\code{roi_align_rotated} operator.
 Only a CPU implementation is provided.
 }
 \section{Functions}{
