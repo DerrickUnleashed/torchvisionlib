@@ -282,7 +282,7 @@ nn_ps_roi_align <- torch::nn_module(
 #'   index into the first dimension of `input`, `(cx, cy)` is the box center,
 #'   `(w, h)` the box size and `angle` the rotation angle in radians
 #'   (counterclockwise unless `clockwise = TRUE`).
-#' @param output_size (int or `Tuple[int, int]`): the output size `(height, width)`
+#' @param output_size (integer or integer vector): the output size `(height, width)`
 #'   after pooling.
 #' @param spatial_scale (float): scaling factor mapping box coordinates to input
 #'   coordinates. For example, if boxes are defined on a 224x224 image and
@@ -299,7 +299,7 @@ nn_ps_roi_align <- torch::nn_module(
 #'   Default: `FALSE`
 #'
 #' @returns
-#' `Tensor[K, C, output_size[1], output_size[2]]`: the pooled features, where
+#' `Tensor[K, C, output_height, output_width]`: the pooled features, where
 #' the `r`-th element corresponds to the `r`-th RoI in `rois`.
 #'
 #' @examples
