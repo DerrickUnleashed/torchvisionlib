@@ -278,7 +278,7 @@ nn_ps_roi_align <- torch::nn_module(
 #'
 #' @param input (`Tensor[N, C, H, W]`): input feature map.
 #' @param rois (`Tensor[K, 6]`): rotated boxes with columns
-#'   `(batch_index, cx, cy, w, h, angle)`, where `batch_index` is a **0-based**
+#'   `(batch_index, cx, cy, w, h, angle)`, where `batch_index` is an
 #'   index into the first dimension of `input`, `(cx, cy)` is the box center,
 #'   `(w, h)` the box size and `angle` the rotation angle in radians
 #'   (counterclockwise unless `clockwise = TRUE`).

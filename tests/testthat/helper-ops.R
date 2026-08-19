@@ -64,7 +64,7 @@ roi_align_rotated_reference <- function(input, rois, output_size, spatial_scale,
 
   for (n in seq_len(K)) {
     roi <- rois_m[n, ]
-    roi_batch_ind <- as.integer(roi[1]) + 1L # 0-based in C++, 1-based in R
+    roi_batch_ind <- as.integer(roi[1]) # already 1-based
     offset <- if (aligned) 0.5 else 0.0
     roi_center_w <- roi[2] * spatial_scale - offset
     roi_center_h <- roi[3] * spatial_scale - offset
@@ -114,9 +114,9 @@ roi_align_rotated_reference <- function(input, rois, output_size, spatial_scale,
 make_rois <- function() {
   torch::torch_tensor(
     matrix(c(
-      0, 3.5, 3.5, 5, 5, 0.5,     # batch 0, ~centered box
-      1, 4.2, 4.8, 6, 4, -0.3,    # batch 1, wider than tall
-      0, 2.0, 2.0, 3, 3, pi / 4   # batch 0, small rotated box
+      1, 3.5, 3.5, 5, 5, 0.5,     # batch 1, ~centered box
+      2, 4.2, 4.8, 6, 4, -0.3,    # batch 2, wider than tall
+      1, 2.0, 2.0, 3, 3, pi / 4   # batch 1, small rotated box
     ), ncol = 6, byrow = TRUE),
     dtype = torch::torch_float32()
   )

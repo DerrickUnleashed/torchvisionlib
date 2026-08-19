@@ -26,7 +26,7 @@ test_that("roi_align_rotated matches with aligned=FALSE and sampling_ratio=0", {
 test_that("roi_align_rotated is differentiable and matches finite differences", {
   input <- torch::torch_randn(2, 2, 6, 6, requires_grad = TRUE)
   rois <- torch_tensor(
-    matrix(c(0, 3, 3, 5, 5, 0.4, 1, 3, 4, 4, 4, -0.2), ncol = 6, byrow = TRUE),
+    matrix(c(1, 3, 3, 5, 5, 0.4, 2, 3, 4, 4, 4, -0.2), ncol = 6, byrow = TRUE),
     dtype = torch_float32()
   )
   output_size <- c(3, 3)
@@ -57,7 +57,7 @@ test_that("roi_align_rotated is differentiable and matches finite differences", 
 
 test_that("nn_roi_align_rotated module works", {
   input <- torch_randn(1, 2, 10, 10)
-  rois <- torch_tensor(matrix(c(0, 5, 5, 4, 4, 0.3), ncol = 6),
+  rois <- torch_tensor(matrix(c(1, 5, 5, 4, 4, 0.3), ncol = 6),
                        dtype = torch_float32())
   mod <- nn_roi_align_rotated(output_size = c(4, 4), spatial_scale = 1,
                               sampling_ratio = 1)
@@ -78,7 +78,7 @@ test_that("roi_align_rotated validates its inputs", {
   )
 
   # negative box size with aligned = TRUE
-  neg_rois <- torch_tensor(matrix(c(0, 3, 3, -2, 5, 0.4), ncol = 6),
+  neg_rois <- torch_tensor(matrix(c(1, 3, 3, -2, 5, 0.4), ncol = 6),
                            dtype = torch_float32())
   expect_error(
     ops_roi_align_rotated(input, neg_rois, c(3, 3), 1),
@@ -86,11 +86,11 @@ test_that("roi_align_rotated validates its inputs", {
   )
 
   # out-of-range batch index
-  oob_rois <- torch_tensor(matrix(c(5, 3, 3, 5, 5, 0.4), ncol = 6),
+  oob_rois <- torch_tensor(matrix(c(0, 3, 3, 5, 5, 0.4), ncol = 6),
                            dtype = torch_float32())
   expect_error(
     ops_roi_align_rotated(input, oob_rois, c(3, 3), 1),
-    regexp = "rois index should be in \\[0, batch_size\\)"
+    regexp = "rois index should be in \\[1, batch_size\\]"
   )
 
   # non-positive output size

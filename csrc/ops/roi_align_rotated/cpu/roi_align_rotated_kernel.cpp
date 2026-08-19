@@ -211,7 +211,7 @@ void ROIAlignRotatedForward(
       for (int c = 0; c < channels; c++) {
         int64_t index_n_c = index_n + c * pooled_width * pooled_height;
         const T* offset_input =
-            input + (roi_batch_ind * channels + c) * height * width;
+            input + ((roi_batch_ind - 1) * channels + c) * height * width;
         int pre_calc_index = 0;
 
         for (int ph = 0; ph < pooled_height; ph++) {
@@ -358,7 +358,7 @@ void ROIAlignRotatedBackward(
     T bin_size_w = static_cast<T>(roi_width) / static_cast<T>(pooled_width);
 
     T* offset_grad_input =
-        grad_input + ((roi_batch_ind * channels + c) * height * width);
+        grad_input + (((roi_batch_ind - 1) * channels + c) * height * width);
 
     int output_offset = n * n_stride + c * c_stride;
     const T* offset_grad_output = grad_output + output_offset;
@@ -440,8 +440,8 @@ void check_rois(
   for (int64_t i = 0; i < num_rois; i++) {
     const double roi_batch_ind = rois_ptr[i * 6];
     TORCH_CHECK(
-        roi_batch_ind >= 0 && roi_batch_ind < batch_size,
-        "rois index should be in [0, batch_size), got ",
+        roi_batch_ind >= 1 && roi_batch_ind <= batch_size,
+        "rois index should be in [1, batch_size], got ",
         roi_batch_ind,
         " in batch of size ",
         batch_size);
