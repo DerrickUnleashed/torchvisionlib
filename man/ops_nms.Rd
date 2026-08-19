@@ -41,6 +41,5 @@ Other ops:
 \code{\link[=ops_box_iou_rotated]{ops_box_iou_rotated()}},
 \code{\link[=ops_ms_deform_attn]{ops_ms_deform_attn()}},
 \code{\link[=ops_roi_align_rotated]{ops_roi_align_rotated()}}
-\code{\link[=ops_ms_deform_attn]{ops_ms_deform_attn()}}
 }
 \concept{ops}
