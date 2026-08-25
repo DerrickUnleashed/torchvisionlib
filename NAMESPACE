@@ -13,6 +13,8 @@ export(torchvisionlib_is_installed)
 export(vision_read_jpeg)
 importFrom(Rcpp,sourceCpp)
 importFrom(rlang,"%||%")
-importFrom(utils,download.file)
-importFrom(utils,packageDescription)
-importFrom(utils,unzip)
+importFrom(utils,
+  download.file,
+  packageDescription,
+  unzip
+)
