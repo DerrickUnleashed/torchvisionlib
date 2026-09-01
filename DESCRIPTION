@@ -27,7 +27,7 @@ LinkingTo:
     Rcpp,
     torch
 Config/Needs/development: Rcpp, torch, torchexport, testthat, roxygen2
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0
 Config/testthat/edition: 3
 Config/torchvisionlib/binaries: Set TORCHVISIONLIB_URL to a URL, local
     ZIP, or directory containing pre-built torchvisionlib binaries. If
