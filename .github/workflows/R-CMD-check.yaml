@@ -31,7 +31,7 @@ jobs:
 
         include:
           - config: {os: ubuntu}
-            container: ubuntu:20.04
+            container: ubuntu:24.04
 
     env:
       TORCH_INSTALL: 1
@@ -78,15 +78,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          # In the ubuntu:20.04 container the GCC is 9, whose preprocessor does
-          # not define __has_builtin. That breaks bit64 at compile time, which
-          # cascades into vroom/readr not installing and therefore torchexport
-          # being unavailable when CMake regenerates the export code. Define the
-          # macro as a no-op so the affected packages build from source.
-          if [ -n "${{ matrix.container }}" ]; then
-            mkdir -p "$HOME/.R"
-            echo 'CPPFLAGS += -D'"'"'__has_builtin(x)=0'"'"'' > "$HOME/.R/Makevars"
-          fi
           Rscript -e "install.packages(c('remotes', 'desc', 'rcmdcheck', 'hms', 'cli'))"
           Rscript -e "remotes::install_github('mlverse/torchexport', force = TRUE)"
 
@@ -172,7 +163,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          Rscript -e "install.packages(c('remotes', 'desc', 'rcmdcheck', 'vroom', 'readr', 'bit64'))" -e "remotes::install_deps(dependencies = TRUE, INSTALL_opts='--no-multiarch')"
+          Rscript -e "install.packages(c('remotes', 'desc', 'rcmdcheck'))" -e "remotes::install_deps(dependencies = TRUE, INSTALL_opts='--no-multiarch')"
           Rscript -e "remotes::install_github('mlverse/torchexport')"
 
       - name: Query package version
